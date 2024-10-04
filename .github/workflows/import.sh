@@ -31,7 +31,7 @@ echo 'configuring github install..'
 #get github up and running
 mkdir --parents "$HOME/.ssh"
 DEPLOY_KEY_FILE="$HOME/.ssh/deploy_key"
-echo "${SSH_DEPLOY_KEY}" > "$DEPLOY_KEY_FILE"
+echo "${SSH_IMPORT_KEY}" > "$DEPLOY_KEY_FILE"
 chmod 600 "$DEPLOY_KEY_FILE"
 SSH_KNOWN_HOSTS_FILE="$HOME/.ssh/known_hosts"
 ssh-keyscan -H "$GIT_SERVER" > "$SSH_KNOWN_HOSTS_FILE"
