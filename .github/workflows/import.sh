@@ -55,8 +55,14 @@ git clone --branch "master" "$GIT_IMPORT_REPOSITORY" "$HOME/git/import"
 GIT_THIS_REPOSITORY="git@$GIT_SERVER:$USER_NAME/$THIS_REPO.git"
 git clone --branch "dev" "$GIT_THIS_REPOSITORY" "$HOME/git/staging"
 
-rm -rf "$HOME/git/staging/$FILE"   #check if file from import repo matches $FILE before we remove it?
+rm -rf "$HOME/git/staging/$FILE"
 
+if !  test -f "$HOME/git/import/$FILE"; then
+  echo "ERROR: $FILE COULD NOT BE FOUND IN THE IMPORTED REPOSITORY!!!! THE SCRIPT WILL NOW TERMINATE!"
+  rm -rf "$IMPORT_KEY_FILE"
+  rm -rf "$HOME/.ssh"
+  exit
+fi
 cp "$HOME/git/import/$FILE" "$HOME/git/staging/scripts/$FILE"
 
 
@@ -67,9 +73,7 @@ cp -r "$HOME/git/staging" "$OUTPUT_DIR"
 
 echo ===========================================================================
 echo 'stamping time..'
-# timestamp the work, script ends, pushes contents to repo via cpina's script
-echo "generated_at: $(date)" > variables.yml
-date > "$OUTPUT_DIR"/.build_date.txt
+echo "generated at: $(date)" > variables.yml
 
 
 
@@ -80,7 +84,7 @@ cd "$OUTPUT_DIR"
 echo "Files that will be pushed:"
 ls -la
 
-COMMIT_MESSAGE="pulled mist from official repo"
+COMMIT_MESSAGE="pulled mist from official repo on $(date)"
 
 echo "Set directory is safe ($OUTPUT_DIR)"
 # Related to https://github.com/cpina/github-action-push-to-another-repository/issues/64
