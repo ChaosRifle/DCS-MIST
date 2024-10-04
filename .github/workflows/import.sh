@@ -50,7 +50,7 @@ echo 'main script begins..'
 
 
 GIT_IMPORT_REPOSITORY="git@$GIT_SERVER:$IMPORT_REPO_OWNER/$IMPORT_REPO.git"
-git clone --branch "main" "$GIT_IMPORT_REPOSITORY" "$HOME/git/import"
+git clone --branch "master" "$GIT_IMPORT_REPOSITORY" "$HOME/git/import"
 
 GIT_THIS_REPOSITORY="git@$GIT_SERVER:$USER_NAME/$THIS_REPO.git"
 git clone --branch "dev" "$GIT_THIS_REPOSITORY" "$HOME/git/staging"
@@ -70,6 +70,7 @@ echo 'stamping time..'
 # timestamp the work, script ends, pushes contents to repo via cpina's script
 echo "generated_at: $(date)" > variables.yml
 date > "$OUTPUT_DIR"/.build_date.txt
+
 
 
 
