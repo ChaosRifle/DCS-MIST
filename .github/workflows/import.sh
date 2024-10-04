@@ -15,7 +15,7 @@ GIT_SERVER="github.com"
 USER_NAME="ChaosRifle"
 USER_EMAIL="ChaosBuildScript@CBS.ca"
 
-THIS_REPO="ChaosTheory"
+THIS_REPO="DCS-MIST"
 IMPORT_REPO_OWNER="mrSkortch"
 IMPORT_REPO="MissionScriptingTools"
 FILE="mist.lua"
