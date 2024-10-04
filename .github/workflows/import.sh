@@ -74,7 +74,6 @@ date > "$OUTPUT_DIR"/.build_date.txt
 
 
 
-
 cd "$OUTPUT_DIR"
 
 echo "Files that will be pushed:"
